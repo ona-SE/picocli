@@ -2,48 +2,104 @@ tasks:
     build:
         name: Build Project
         description: Build the picocli project with Gradle
-        command: |
-            ./gradlew clean build
+        command: ./gradlew clean build
         triggeredBy:
             - manual
     
     test:
         name: Run Tests
         description: Run all tests
-        command: |
-            ./gradlew test
+        command: ./gradlew test
+        triggeredBy:
+            - manual
+    
+    test-verbose:
+        name: Run Tests (Verbose)
+        description: Run all tests with verbose output
+        command: ./gradlew test --info
+        triggeredBy:
+            - manual
+    
+    check:
+        name: Run All Checks
+        description: Run all verification tasks including tests and code quality checks
+        command: ./gradlew check
         triggeredBy:
             - manual
     
     publish-local:
         name: Publish to Maven Local
         description: Publish artifacts to local Maven repository
-        command: |
-            ./gradlew publishToMavenLocal
+        command: ./gradlew publishToMavenLocal
+        triggeredBy:
+            - manual
+    
+    assemble:
+        name: Assemble Artifacts
+        description: Assemble all artifacts without running tests
+        command: ./gradlew assemble
         triggeredBy:
             - manual
     
     gradle-version:
         name: Show Gradle Version
         description: Display Gradle and Java version information
-        command: |
-            ./gradlew --version
+        command: ./gradlew --version
         triggeredBy:
             - manual
     
     java-toolchains:
         name: Show Java Toolchains
         description: Display available Java toolchains
-        command: |
-            ./gradlew -q javaToolchains
+        command: ./gradlew -q javaToolchains
+        triggeredBy:
+            - manual
+    
+    dependencies:
+        name: Show Dependencies
+        description: Display project dependencies
+        command: ./gradlew dependencies
+        triggeredBy:
+            - manual
+    
+    tasks-list:
+        name: List Available Tasks
+        description: Display all available Gradle tasks
+        command: ./gradlew tasks --all
         triggeredBy:
             - manual
     
     clean:
         name: Clean Build
         description: Clean all build artifacts
-        command: |
-            ./gradlew clean
+        command: ./gradlew clean
         triggeredBy:
             - manual
-
+    
+    javadoc:
+        name: Generate Javadoc
+        description: Generate API documentation
+        command: ./gradlew javadoc
+        triggeredBy:
+            - manual
+    
+    build-examples:
+        name: Build Examples
+        description: Build example projects
+        command: ./gradlew :picocli-examples:build
+        triggeredBy:
+            - manual
+    
+    generate-docs:
+        name: Generate Documentation
+        description: Generate all documentation including Javadoc and AsciiDoc
+        command: ./gradlew asciidoctor javadoc
+        triggeredBy:
+            - manual
+    
+    generate-manpage:
+        name: Generate Manpage
+        description: Generate AsciiDoc manpage documentation
+        command: ./gradlew :picocli-codegen:generateManpageAsciiDoc
+        triggeredBy:
+            - manual

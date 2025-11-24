@@ -14,6 +14,9 @@
 		},
 		"ghcr.io/devcontainers/features/git:1": {
 			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"version": "latest"
 		}
 	},
 	"customizations": {
@@ -27,7 +30,8 @@
 				"vscjava.vscode-java-test",
 				"vscjava.vscode-java-dependency",
 				"redhat.vscode-xml",
-				"EditorConfig.EditorConfig"
+				"EditorConfig.EditorConfig",
+				"GitHub.vscode-pull-request-github"
 			],
 			"settings": {
 				"java.configuration.runtimes": [
@@ -37,9 +41,16 @@
 						"default": true
 					}
 				],
-				"java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current"
+				"java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
+				"java.test.config": {
+					"vmArgs": [
+						"-ea"
+					]
+				},
+				"gradle.nestedProjects": true
 			}
 		}
 	},
-	"forwardPorts": []
+	"forwardPorts": [],
+	"postCreateCommand": "bash -c 'chmod +x gradlew && ./gradlew --version'"
 }
