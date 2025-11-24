@@ -1,0 +1,49 @@
+tasks:
+    build:
+        name: Build Project
+        description: Build the picocli project with Gradle
+        command: |
+            ./gradlew clean build
+        triggeredBy:
+            - manual
+    
+    test:
+        name: Run Tests
+        description: Run all tests
+        command: |
+            ./gradlew test
+        triggeredBy:
+            - manual
+    
+    publish-local:
+        name: Publish to Maven Local
+        description: Publish artifacts to local Maven repository
+        command: |
+            ./gradlew publishToMavenLocal
+        triggeredBy:
+            - manual
+    
+    gradle-version:
+        name: Show Gradle Version
+        description: Display Gradle and Java version information
+        command: |
+            ./gradlew --version
+        triggeredBy:
+            - manual
+    
+    java-toolchains:
+        name: Show Java Toolchains
+        description: Display available Java toolchains
+        command: |
+            ./gradlew -q javaToolchains
+        triggeredBy:
+            - manual
+    
+    clean:
+        name: Clean Build
+        description: Clean all build artifacts
+        command: |
+            ./gradlew clean
+        triggeredBy:
+            - manual
+
